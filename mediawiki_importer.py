@@ -28,8 +28,8 @@ except mariadb.Error as e:
 
 cursor = conn.cursor()
 
-with open('mediawiki_importer/clean_db.sql') as f:
-    cursor.execute(f.read().decode('utf-8'), multi=True)
+for line in open('mediawiki_importer/clean_db.sql'):
+    cursor.execute(line)
 
 conn.close()
 
