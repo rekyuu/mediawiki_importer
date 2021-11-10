@@ -29,6 +29,7 @@ except mariadb.Error as e:
 cursor = conn.cursor()
 
 for line in open('mediawiki_importer/clean_db.sql'):
+    print(f'Executing `{line}`')
     cursor.execute(line)
 
 conn.close()
