@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import mariadb
 import settings
@@ -28,7 +28,7 @@ except mariadb.Error as e:
 
 cursor = conn.cursor()
 
-with open('clean_db.sql') as f:
+with open('mediawiki_importer/clean_db.sql') as f:
     cursor.execute(f.read().decode('utf-8'), multi=True)
 
 conn.close()
