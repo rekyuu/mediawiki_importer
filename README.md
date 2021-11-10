@@ -13,5 +13,5 @@ $ git clone https://github.com/rekyuu/mediawiki_importer
 Update `settings.py` to your definitions and execute the script from the root of your new MediaWiki installation.
 
 ```sh
-$ python mediawiki_importer.py
+$ python mediawiki_importer/mediawiki_importer.py
 ```
