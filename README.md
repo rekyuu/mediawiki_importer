@@ -5,7 +5,9 @@ Script I made to automate a migration process into MediaWiki containers.
 See: https://www.mediawiki.org/wiki/Manual:Grabbers
 
 ```sh
-$ sudo apt install libmariadb3 libmariadb-dev
+$ sudo apt update
+
+$ sudo apt install python3-pip libmariadb3 libmariadb-dev
 
 $ pip3 install mariadb
 
