@@ -7,12 +7,16 @@ import sys
 
 
 def run_grabber(grabber):
+    print(f'Running grabber {grabber}.php...')
+
     subprocess.run([
         'php', f'grabbers/{grabber}.php',
         '--url', settings.api_url,
         '--username', settings.wiki_username,
         '--password', settings.wiki_password
     ])
+
+    print(f'{grabber}.php completed.')
 
 
 try:
@@ -28,9 +32,10 @@ except mariadb.Error as e:
 
 cursor = conn.cursor()
 
-for line in open('mediawiki_importer/clean_db.sql'):
-    print(f'Executing {line}')
-    cursor.execute(line)
+if (settings.db_clean):
+    for line in open('mediawiki_importer/clean_db.sql'):
+        print(f'Executing {line}')
+        cursor.execute(line)
 
 conn.close()
 
@@ -45,3 +50,6 @@ run_grabber('grabProtectedTitles')
 run_grabber('grabAbuseFilter')
 
 subprocess.run([ 'php', 'grabbers/populateUserTable.php' ])
+
+subprocess.run([ 'php', 'maintenance/refreshImageMetadata.php' ])
+subprocess.run([ 'php', 'maintenance/rebuildall.php' ])

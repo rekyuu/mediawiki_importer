@@ -26,3 +26,6 @@ db_name = 'mywiki'
 
 # Database host
 db_host = 'localhost'
+
+# Don't clean relevant tables on run
+db_clean = True
